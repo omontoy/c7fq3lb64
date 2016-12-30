@@ -3,11 +3,11 @@ class ExpensesController < ApplicationController
     @expenses = Expense.order("date DESC")
 
     if !params[:concept].empty?  
-      @expenses = Expense.where("concept LIKE ?", "%#{params[:concept].strip}%")
+      @expenses = @expenses.where("concept LIKE ?", "%#{params[:concept].strip}%")
     end
 
     if !params[:category_id].empty?
-      @expenses = Expense.where(category_id: params[:category_id])
+      @expenses = @expenses.where(category_id: params[:category_id])
     end
   end
 end
